@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Python Code Placeholder
 
+
 class float:
 	n = 0 		# the numerator of the number behind the dcm pnt
 	d = 1		# the denominator of the number behind the dcm pnt
@@ -24,14 +25,15 @@ class float:
 	def get_d():
 		return self.d
 
+
  
 """
-    parse through string and remove 
+    parse through string or char list and remove 
     whole integer from float                                 
 """
 def characteristic( num_string, float_obj ):
 
-    # steps: feel free to change this is rough
+  # steps: feel free to change this is rough
 	# 1. split string on "."
 	# 2. grab string from first index after split
 	# 3. filter out any extra characters 
@@ -40,25 +42,25 @@ def characteristic( num_string, float_obj ):
 	# 6. Return success or failure flag
 	
 	   # code here
-	   
+
     return False    
 
 
 """
-    parse through string and remove
+    parse through string or char list and remove
     numbers behind decimal point from float
 """
 def mantissa( num_string, float_obj ):
     
     # steps: again feel free to change this is rough
-    # 1. parse string until "."
+    # 1. split string on "."
     # 2. grab index[1]
-	# 3. convert decimal to fraction
+	  # 3. convert decimal to fraction
     # 4. assign the result to external variables
-	# 5. save numarator->float.n and denominator->float.d 
+	  # 5. save numarator->float.n and denominator->float.d 
     # 6. Return success or failure flag
 
-		# code here
+		  # code here
 
     return False
     
