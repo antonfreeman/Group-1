@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 class float:
-    def __init__():
+    def __init__(self):
         _n = 0 		# the numerator of the number behind the dcm pnt
         _d = 1		# the denominator of the number behind the dcm pnt
         _c = 0 		# the characteristic of the number
@@ -15,17 +15,26 @@ class float:
     def set_d(self, value):
         self._d = value
 
-    def get_c():
+    def get_c(self):
         return self._c
 
-    def get_n():
+    def get_n(self):
         return self._n
 
-    def get_d():
+    def get_d(self):
         return self._d
     
-    def __str__():
-        return str(self.get_c()) + " + " str(self.get_n()) + " / " + str(self.get_d()) 
+    def __str__(self):
+        opp_char = " + ( "
+        
+        if self.get_c() < 0 :
+            opp_char = " - ( "
+            
+        if self.get_n() != 0:
+            return str(self.get_c()) + opp_char + str(self.get_n()) + \
+                   " / " + str(self.get_d()) + " )"
+        else:
+            return str(self.get_c()) + " + 0"
     
 
     
@@ -47,7 +56,7 @@ def characteristic( num_string, float_obj ):
     number = int( sanitize(num_string).split(".")[0] )
     float_obj.set_c( number )
     
-    return float_obj.get_c() == int(num_string)
+    return float_obj.get_c() == int(number)
 
 
 """
@@ -55,7 +64,7 @@ parse through string or char list and remove
 numbers behind decimal point from float
 """
 def mantissa( num_string, float_obj ):
-    num_string = sanitize(num_string)
+    
     # steps: again feel free to change this is rough
     # 1. split string on "."
     # 2. grab index[1]
@@ -69,8 +78,8 @@ def mantissa( num_string, float_obj ):
     float_obj.set_n( int(number) )
     float_obj.set_d( get_denominator(number) )
     
-    return float_obj.get_n() == int(number) and 
-           float_obj.get_d() == get_denominator(number)
+    return float_obj.get_n() == int(number) and \
+    	   float_obj.get_d() == get_denominator(number)
 
     
 def get_denominator( num_string ):
@@ -81,13 +90,17 @@ def get_denominator( num_string ):
 def sanitize(num_string):
     # removes all characters from num_string
     # except +, -, '.', and numbers 0-9 
+    if num_string.count('.') > 1 or \
+       num_string.count('-') > 1 or \
+       num_string.count('+') > 1:
+         return "0.0"
     num_string = num_string.strip("\0")
-    new_num = ''
+    new_num = '0'
     
     for i in num_string:
         i = ord(i)
         
-        if i < ord('9')+1 or i > ord('0')-1 or i == ord('.')
+        if (i < ord('9')+1 and i > ord('0')-1) or i == ord('.') or \
            i == ord('+') or i == ord('-'):
             new_num += chr(i)
             
@@ -95,10 +108,12 @@ def sanitize(num_string):
     # if it passes add a decmal point and 0's to end
     if "." not in new_num:
         new_num += ".00"
+    
+    
     return new_num
 
 def main():
-    test = "123.456"                    # test value
+    test = input()#"123.456")                    # test value
     test_float = float()                # container for result
     
     characteristic(test, test_float)    # get and store characteristic in test_float
@@ -106,6 +121,7 @@ def main():
     
     print(test_float)
     
+main()
     
     
     
