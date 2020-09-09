@@ -113,7 +113,7 @@ def sanitize(num_string):
     return new_num
 
 def main():
-    test = input()#"123.456")                    # test value
+    test = "123.456"                    # test value
     test_float = float()                # container for result
     
     characteristic(test, test_float)    # get and store characteristic in test_float
